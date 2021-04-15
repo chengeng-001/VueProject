@@ -1,25 +1,41 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
+import Film from "@/views/Film";
+import cinema from "@/views/film/cinema";
+import center from "@/views/film/center";
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/film',
+    component: Film
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/cinema/:id',
+    component: cinema
+  },
+  {
+    path: '/center',
+    component: center
+  },
+  {
+    //注意通配符* 已经不支持
+    path: '/',
+    redirect: '/film'
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
+  history:createWebHashHistory(),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  console.log("拦截");
+  if(to.fullPath === '/center') {
+    console.log('拦截');
+  }else {
+    next();
+  }
+});
 
 export default router

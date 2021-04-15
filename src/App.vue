@@ -1,11 +1,39 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="nav" v-show="$store.state.isShow">
+<!--    1 ----- -->
+<!--    hello vue3 <br>-->
+<!--    {{ myName }}-->
+<!--    <button @click="handleClick">按下</button>-->
+
+    <!--    2    -->
+    <ul>
+      <router-link to="/film" >film</router-link>
+      <router-link to="/center" >center</router-link>
+      <router-link to="/cinema" >cinema</router-link>
+    </ul>
+
   </div>
   <router-view/>
 </template>
 
+<script>
+export default {
+  // data () {
+  //   return {
+  //     myName: 'zhangsan'
+  //   }
+  // },
+  // methods: {
+  //   handleClick () {
+  //     this.myName = '小明'
+  //   }
+  // }
+
+  // 2
+
+
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
